@@ -19,7 +19,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
 {
     public class GoogleTranslateAppService : ApiBaseAppService, IGoogleTranslateAppService
     {
-        public GoogleTranslateAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType type) : base(options, localizer, serviceProvider, type)
+        public GoogleTranslateAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Translate)
         {
         }
 

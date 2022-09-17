@@ -27,7 +27,7 @@ namespace Byteology.GoogleApiModule.Apis
         public readonly IHttpContextAccessor HttpContextAccessor;
         public readonly string APIKey;
 
-        protected ApiBaseAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType type)
+        protected ApiBaseAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType? type = null)
         {
             Options = options.Value;
             Localizer = localizer;
@@ -45,7 +45,7 @@ namespace Byteology.GoogleApiModule.Apis
         /// <param name="type"></param>
         /// <returns></returns>
         /// <exception cref="UserFriendlyException"></exception>
-        private string GetApiKey(EndPointType type)
+        private string GetApiKey(EndPointType? type = null)
         {
             string apiKey = null;
 

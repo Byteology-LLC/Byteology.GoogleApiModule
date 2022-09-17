@@ -22,7 +22,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 {
     public class GoogleSearchAppService : ApiBaseAppService, IGoogleSearchAppService
     {
-        public GoogleSearchAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType type) : base(options, localizer, serviceProvider, type)
+        public GoogleSearchAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Search)
         {
         }
 

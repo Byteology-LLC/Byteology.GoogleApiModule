@@ -27,7 +27,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
 {
     public class GooglePlacesAppService : ApiBaseAppService, IGooglePlacesAppService
     {
-        public GooglePlacesAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType type) : base(options, localizer, serviceProvider, type)
+        public GooglePlacesAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Places)
         {
         }
 
