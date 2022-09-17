@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="5.3.4" />
+    <ProjectReference Include="..\Byteology.GoogleApiModule.Domain\Byteology.GoogleApiModule.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Byteology.GoogleApiModule.Domain.Shared": {
+      "path": "src/Byteology.GoogleApiModule.Domain.Shared/Byteology.GoogleApiModule.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Domain": {
+      "path": "src/Byteology.GoogleApiModule.Domain/Byteology.GoogleApiModule.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Application.Contracts": {
+      "path": "src/Byteology.GoogleApiModule.Application.Contracts/Byteology.GoogleApiModule.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Application": {
+      "path": "src/Byteology.GoogleApiModule.Application/Byteology.GoogleApiModule.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.EntityFrameworkCore": {
+      "path": "src/Byteology.GoogleApiModule.EntityFrameworkCore/Byteology.GoogleApiModule.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.MongoDB": {
+      "path": "src/Byteology.GoogleApiModule.MongoDB/Byteology.GoogleApiModule.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.HttpApi": {
+      "path": "src/Byteology.GoogleApiModule.HttpApi/Byteology.GoogleApiModule.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.HttpApi.Client": {
+      "path": "src/Byteology.GoogleApiModule.HttpApi.Client/Byteology.GoogleApiModule.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.TestBase": {
+      "path": "test/Byteology.GoogleApiModule.TestBase/Byteology.GoogleApiModule.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.EntityFrameworkCore.Tests": {
+      "path": "test/Byteology.GoogleApiModule.EntityFrameworkCore.Tests/Byteology.GoogleApiModule.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.MongoDB.Tests": {
+      "path": "test/Byteology.GoogleApiModule.MongoDB.Tests/Byteology.GoogleApiModule.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.Domain.Tests": {
+      "path": "test/Byteology.GoogleApiModule.Domain.Tests/Byteology.GoogleApiModule.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.Application.Tests": {
+      "path": "test/Byteology.GoogleApiModule.Application.Tests/Byteology.GoogleApiModule.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.HttpApi.Host": {
+      "path": "host/Byteology.GoogleApiModule.HttpApi.Host/Byteology.GoogleApiModule.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.Web": {
+      "path": "src/Byteology.GoogleApiModule.Web/Byteology.GoogleApiModule.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Byteology.GoogleApiModule.HttpApi.Client.ConsoleTestApp/Byteology.GoogleApiModule.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Byteology.GoogleApiModule.Web.Host": {
+      "path": "host/Byteology.GoogleApiModule.Web.Host/Byteology.GoogleApiModule.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.IdentityServer": {
+      "path": "host/Byteology.GoogleApiModule.IdentityServer/Byteology.GoogleApiModule.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.Host.Shared": {
+      "path": "host/Byteology.GoogleApiModule.Host.Shared/Byteology.GoogleApiModule.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.Web.Unified": {
+      "path": "host/Byteology.GoogleApiModule.Web.Unified/Byteology.GoogleApiModule.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.Blazor": {
+      "path": "src/Byteology.GoogleApiModule.Blazor/Byteology.GoogleApiModule.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Blazor.Host": {
+      "path": "host/Byteology.GoogleApiModule.Blazor.Host/Byteology.GoogleApiModule.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Byteology.GoogleApiModule.Blazor.Server": {
+      "path": "src/Byteology.GoogleApiModule.Blazor.Server/Byteology.GoogleApiModule.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Blazor.WebAssembly": {
+      "path": "src/Byteology.GoogleApiModule.Blazor.WebAssembly/Byteology.GoogleApiModule.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Byteology.GoogleApiModule.Blazor.Server.Host": {
+      "path": "host/Byteology.GoogleApiModule.Blazor.Server.Host/Byteology.GoogleApiModule.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

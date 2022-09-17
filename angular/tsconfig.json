@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@byteology/google-api-module": [
+        "projects/google-api-module/src/public-api.ts"
+      ],
+      "@byteology/google-api-module/config": [
+        "projects/google-api-module/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/google-api-module/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/google-api-module/src/lib/proxy/*"]
+    }
+  }
+}

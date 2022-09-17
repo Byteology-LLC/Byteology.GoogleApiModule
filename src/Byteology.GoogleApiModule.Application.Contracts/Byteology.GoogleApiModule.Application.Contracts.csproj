@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DonBoutwell.GoogleApi" Version="1.0.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="5.3.4" />
+    <ProjectReference Include="..\Byteology.GoogleApiModule.Domain.Shared\Byteology.GoogleApiModule.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

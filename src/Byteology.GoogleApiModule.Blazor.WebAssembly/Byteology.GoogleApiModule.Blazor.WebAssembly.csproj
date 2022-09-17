@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="5.3.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Byteology.GoogleApiModule.Blazor\Byteology.GoogleApiModule.Blazor.csproj" />
+        <ProjectReference Include="..\Byteology.GoogleApiModule.HttpApi.Client\Byteology.GoogleApiModule.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+</Project>

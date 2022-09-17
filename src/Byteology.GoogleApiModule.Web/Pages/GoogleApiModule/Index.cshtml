@@ -1,0 +1,26 @@
+﻿@page
+@using Byteology.GoogleApiModule.Web.Pages.Components.GooglePlacesAutocompleteWidget
+@using Byteology.GoogleApiModule.Web.Pages.Components.GooglePlacesFindPlaceWidget
+@using Microsoft.Extensions.Localization
+@using Byteology.GoogleApiModule.Localization
+@using Byteology.GoogleApiModule.Web.Pages.GoogleApiModule
+@model Byteology.GoogleApiModule.Web.Pages.GoogleApiModule.IndexModel
+@inject IStringLocalizer<GoogleApiModuleResource> L
+
+@{
+}
+<h1>GoogleApiModule</h1>
+@*Widget Examples*@
+<form method="post" autocomplete="off">
+    <label>Lookup Address:</label>
+    @await Component.InvokeAsync(typeof(GooglePlacesAutocompleteWidgetViewComponent),new GooglePlacesAutoCompleteWidgetOptions{
+        Name = "address"
+    })
+
+    <label>Find Place:</label>
+    @await Component.InvokeAsync(typeof(GooglePlacesFindPlaceWidgetViewComponent),new GooglePlacesFindPlaceWidgetOptions{
+        Name = "findAddress"
+    })
+
+    <abp-button button-type="Primary" type="submit">Save</abp-button>
+</form>

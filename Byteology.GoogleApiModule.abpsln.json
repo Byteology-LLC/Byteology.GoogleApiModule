@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Byteology.GoogleApiModule": {
+      "path": "Byteology.GoogleApiModule.abpmdl.json"
+    }
+  }
+}
