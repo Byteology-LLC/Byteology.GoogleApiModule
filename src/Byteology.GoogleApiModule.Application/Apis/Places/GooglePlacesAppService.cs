@@ -39,6 +39,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
 
             var request = ObjectMapper.Map<GooglePlacesAutoCompleteInput, PlacesAutoCompleteRequest>(input);
             request.Key = Options.APIKey;
+            request.SessionToken = GetSessionToken();
 
             var response = await _autocompleteApi.QueryAsync(request, GetCancellationToken());
 

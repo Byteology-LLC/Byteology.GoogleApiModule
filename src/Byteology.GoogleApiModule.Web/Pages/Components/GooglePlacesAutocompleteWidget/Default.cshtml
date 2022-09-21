@@ -2,6 +2,7 @@
 @model GooglePlacesAutoCompleteWidgetOptions
 
 <div class="google-places-autocomplete-widget m-3">
+    <input type="hidden" id="google-places-autocomplete-selection-placeid" name="@Model.PlaceIdInputName" />
    <select name="@Model.Name" class="google-places-auto-complete w-100 @Model.CssClass"></select>
 </div>
 

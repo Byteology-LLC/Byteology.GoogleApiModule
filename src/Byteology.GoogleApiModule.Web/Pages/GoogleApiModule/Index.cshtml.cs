@@ -9,6 +9,9 @@ public class IndexModel : GoogleApiModulePageModel
     [BindProperty]
     public string FindAddress { get; set; }
 
+    [BindProperty]
+    public string PlaceId { get; set; }
+
     public void OnGet()
     {
     }

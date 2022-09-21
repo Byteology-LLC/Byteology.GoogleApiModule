@@ -2,7 +2,8 @@
 {
     public class GooglePlacesAutoCompleteWidgetOptions
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "Address";
         public string CssClass { get; set; }
+        public string PlaceIdInputName { get; set; } = "PlaceId";
     }
 }
