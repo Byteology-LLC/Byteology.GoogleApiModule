@@ -142,7 +142,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             //Act
             var results = await googlePlacesAppService.TextSearchAsync(new Inputs.GooglePlacesTextSearchInput
             {
-                Query = "Casinos in Las Vegas"
+                Query = "Caesars in Las Vegas"
             });
 
             //Assert
