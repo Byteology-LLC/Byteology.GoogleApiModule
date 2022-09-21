@@ -9,6 +9,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Byteology.GoogleApiModule.Web</RootNamespace>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageId>ByteologyLLC.GoogleApiModule.Web</PackageId>
+	  <Authors>Don Boutwell</Authors>
+	  <Company>Byteology, LLC</Company>
+	  <PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

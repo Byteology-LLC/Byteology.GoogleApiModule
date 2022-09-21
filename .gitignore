@@ -264,3 +264,4 @@ host/Byteology.GoogleApiModule.Blazor.Server.Host/Logs/logs.txt
 #Secrets
 appsettings.secrets.json
 **/appsettings.secrets.json
+/host/Byteology.GoogleApiModule.Web.Unified/null

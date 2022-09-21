@@ -48,7 +48,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
         }
 
         //Commenting this test out until the GoogleApi package gets updated to fix the exception when Google adds a new language: https://github.com/vivet/GoogleApi/pull/304
-        /*[Fact]
+        [Fact]
         public async Task Should_Get_Language_List()
         {
             //Act
@@ -61,7 +61,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
             results.Status.ShouldBe(GoogleApi.Entities.Common.Enums.Status.Ok);
             results.ErrorMessage.ShouldBeNull();
             results.Data.Languages.Count().ShouldBeGreaterThan(1);
-        }*/
+        }
 
         [Fact]
         public async Task Should_Translate()

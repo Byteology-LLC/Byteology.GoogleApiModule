@@ -7,6 +7,9 @@
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <UserSecretsId>Byteology.GoogleApiModule-c2d31439-b723-48e2-b061-5ebd7aeb6010</UserSecretsId>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
