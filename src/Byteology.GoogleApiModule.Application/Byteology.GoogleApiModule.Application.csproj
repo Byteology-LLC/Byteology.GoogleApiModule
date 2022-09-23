@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -9,11 +9,24 @@
     <FileVersion>1.0.0</FileVersion>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>ByteologyCo.GoogleApiModule.Application</PackageId>
+    <PackageId>ByteologyLLC.GoogleApiModule.Application</PackageId>
     <Authors>Don Boutwell</Authors>
     <Company>Byteology, LLC</Company>
-    <PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
+	  <PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
+	  <PackageIcon>icon.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</RepositoryUrl>
+	  <PackageTags>ABP;GoogleApi;</PackageTags>
+	  <RepositoryType>git</RepositoryType>
+	  <Copyright>2022, Byteology LLC</Copyright>
+	  <Description>Application module for ABP Framework projects. Contains the Application Services that interact with the Google APIs.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GoogleApi" Version="4.2.5" />

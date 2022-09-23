@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -13,7 +13,20 @@
 	  <Authors>Don Boutwell</Authors>
 	  <Company>Byteology, LLC</Company>
 	  <PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
+	  <PackageIcon>icon.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</RepositoryUrl>
+	  <PackageTags>ABP;GoogleApi;</PackageTags>
+	  <RepositoryType>git</RepositoryType>
+	  <Copyright>2022, Byteology LLC</Copyright>
+	  <Description>Application.Contracts module for ABP Framework projects. Contains interfaces and DTOs for the AppServices.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GoogleApi" Version="4.2.5" />

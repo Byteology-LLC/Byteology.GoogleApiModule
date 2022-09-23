@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <Import Project="..\..\common.props" />
 
@@ -12,7 +12,20 @@
 		<Authors>Don Boutwell</Authors>
 		<Company>Byteology, LLC</Company>
 		<PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<RepositoryUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</RepositoryUrl>
+		<PackageTags>ABP;GoogleApi;</PackageTags>
+		<RepositoryType>git</RepositoryType>
+		<Copyright>2022, Byteology LLC</Copyright>
+		<Description>Blazor module for ABP Framework projects.</Description>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\..\icon.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.4" />

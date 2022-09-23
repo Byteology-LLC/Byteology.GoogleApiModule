@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <Import Project="..\..\common.props" />
 
@@ -17,6 +17,12 @@
 	  <Authors>Don Boutwell</Authors>
 	  <Company>Byteology, LLC</Company>
 	  <PackageProjectUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</PackageProjectUrl>
+	  <PackageIcon>icon.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Byteology-LLC/Byteology.GoogleApiModule</RepositoryUrl>
+	  <PackageTags>ABP;GoogleApi;MVC</PackageTags>
+	  <RepositoryType>git</RepositoryType>
+	  <Copyright>2022, Byteology LLC</Copyright>
+	  <Description>Web module for ABP Framework projects using MVC. Contains pre-configured widgets and a test page.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,6 +52,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="Pages\Components\GooglePlacesAutocompleteWidget\Default.cshtml" />
     <None Include="Pages\Components\GooglePlacesFindPlaceWidget\Default.cshtml" />
   </ItemGroup>
