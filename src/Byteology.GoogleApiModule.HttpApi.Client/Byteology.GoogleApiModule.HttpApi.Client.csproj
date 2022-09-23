@@ -5,9 +5,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
-    <Version>1.0.0</Version>
-    <FileVersion>1.0.0</FileVersion>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Version>1.0.1</Version>
+    <FileVersion>1.0.1</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageId>ByteologyLLC.GoogleApiModule.HttpApi.Client</PackageId>
 	  <Authors>Don Boutwell</Authors>
@@ -19,6 +19,8 @@
 	  <RepositoryType>git</RepositoryType>
 	  <Copyright>2022, Byteology LLC</Copyright>
 	  <Description>HttpApi.Client module for ABP Framework projects.</Description>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
