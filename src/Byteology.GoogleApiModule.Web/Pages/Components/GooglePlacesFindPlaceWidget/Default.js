@@ -66,4 +66,9 @@
     function formatPlaceSelection(place) {
         return place.formattedAddress || place.text;
     }
+
+    $('.google-places-find-place').on('change', function () {
+        var selection = $(this).select2('data')[0];
+        $('#google-places-find-place-selection-placeid').val(selection.placeId);
+    });
 });

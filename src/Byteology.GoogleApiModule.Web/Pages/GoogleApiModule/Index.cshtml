@@ -14,12 +14,14 @@
 <form method="post" autocomplete="off">
     <label>Lookup Address:</label>
     @await Component.InvokeAsync(typeof(GooglePlacesAutocompleteWidgetViewComponent),new GooglePlacesAutoCompleteWidgetOptions{
-        Name = "address"
+        Name = "autoCompleteAddress",
+        PlaceIdInputName = "autoCompletePlaceId"
     })
 
     <label>Find Place:</label>
     @await Component.InvokeAsync(typeof(GooglePlacesFindPlaceWidgetViewComponent),new GooglePlacesFindPlaceWidgetOptions{
-        Name = "findAddress"
+        Name = "findAddress",
+        PlaceIdInputName = "findPlaceId"
     })
 
     <abp-button button-type="Primary" type="submit">Save</abp-button>

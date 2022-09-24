@@ -2,6 +2,7 @@
 @model GooglePlacesFindPlaceWidgetOptions
 
 <div class="google-places-find-place-widget m-3">
-   <select name="@Model.Name" class="google-places-find-place w-100 @Model.CssClass"></select>
+    <input type="hidden" id="google-places-find-place-selection-placeid" name="@Model.PlaceIdInputName" />
+    <select name="@Model.Name" class="google-places-find-place w-100 @Model.CssClass"></select>
 </div>
 
