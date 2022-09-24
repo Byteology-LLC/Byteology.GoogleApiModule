@@ -9,9 +9,9 @@
         <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
         <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
         <PreserveCompilationReferences>true</PreserveCompilationReferences>
-        <Version>1.0.1</Version>
-        <FileVersion>1.0.1</FileVersion>
-        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <Version>1.0.2</Version>
+        <FileVersion>1.0.2</FileVersion>
+        <AssemblyVersion>1.0.2</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
