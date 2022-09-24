@@ -38,8 +38,6 @@ Using the Package Manager Console, set the below application as the default proj
 
 - Application : `Install-Package "ByteologyLLC.GoogleApiModule.Application"`
 - Application.Contracts : `Install-Package "ByteologyLLC.GoogleApiModule.Application.Contracts"`
-- Domain : `Install-Package "ByteologyLLC.GoogleApiModule.Domain"`
-- Domain.Shared : `Install-Package "ByteologyLLC.GoogleApiModule.Domain.Shared"`
 - HttpApi : `Install-Package "ByteologyLLC.GoogleApiModule.HttpApi"`
 
 These are all that's required to get the API endpoints running. If you want to use the pre-built widgets you can also include the UI packages:
@@ -60,8 +58,6 @@ At a bare minimum, you will need the following directories copied over:
 
 - Byteology.GoogleApiModule.Application.Contracts
 - Byteology.GoogleApiModule.Application
-- Byteology.GoogleApiModule.Domain.Shared
-- Byteology.GoogleApiModule.Domain
 - Byteology.GoogleApiModule.HttpApi
 - Byteology.GoogleApiModule.Web (currently the only UI with widgets, but in the future you can replace this with the other UI files)
 
