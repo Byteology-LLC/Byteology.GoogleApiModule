@@ -6,9 +6,9 @@
         <TargetFramework>net5.0</TargetFramework>
         <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
         <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
-        <Version>1.0.4</Version>
-        <FileVersion>1.0.4</FileVersion>
-        <AssemblyVersion>1.0.4</AssemblyVersion>
+        <Version>1.0.5</Version>
+        <FileVersion>1.0.5</FileVersion>
+        <AssemblyVersion>1.0.5</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
