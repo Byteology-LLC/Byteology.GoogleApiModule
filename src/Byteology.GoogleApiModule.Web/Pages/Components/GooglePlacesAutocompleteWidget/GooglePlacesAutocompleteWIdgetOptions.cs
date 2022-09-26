@@ -22,8 +22,5 @@
         /// Label for the field. Defaults to null.
         /// </summary>
         public string Label { get; set; } = null;
-        
-
-
     }
 }

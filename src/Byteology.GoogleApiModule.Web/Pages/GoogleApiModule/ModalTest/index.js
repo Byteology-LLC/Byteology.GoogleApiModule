@@ -11,8 +11,8 @@
 
     //add this if you are using the ModalManager to create a Modal to initialize the widgets
     _createModal.onOpen(function () {
-        googlePlacesAutoCompleteInit();
-        googlePlacesFindPlaceInit();
+        googlePlacesAutoCompleteWidgetInit();
+        googlePlacesFindPlaceWidgetInit();
     });
 
 })();

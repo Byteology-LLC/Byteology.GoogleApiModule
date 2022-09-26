@@ -1,4 +1,4 @@
-﻿function googlePlacesFindPlaceInit() {
+﻿function googlePlacesFindPlaceWidgetInit() {
 
     var parent = $('.google-places-autocomplete-widget');
 
@@ -73,7 +73,7 @@
 
 $(document).ready(function () {
     
-    googlePlacesFindPlaceInit();
+    googlePlacesFindPlaceWidgetInit();
 
     
 

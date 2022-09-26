@@ -1,4 +1,4 @@
-﻿function googlePlacesAutoCompleteInit() {
+﻿function googlePlacesAutoCompleteWidgetInit() {
 
     var parent = $('.google-places-autocomplete-widget');
 
@@ -32,7 +32,7 @@
 
 $(document).ready(function () {   
 
-    googlePlacesAutoCompleteInit();
+    googlePlacesAutoCompleteWidgetInit();
 
     $(document.body).on('change', '.google-places-auto-complete', function () {
         var selection = $(this).select2('data')[0];
