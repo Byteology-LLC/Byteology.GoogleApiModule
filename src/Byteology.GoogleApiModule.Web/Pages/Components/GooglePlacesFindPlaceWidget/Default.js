@@ -80,8 +80,8 @@ $(document).ready(function () {
 
     
 
-    $('.google-places-find-place').on('change', function () {
-        var selection = $(this).select2('data')[0];
+    $('#google-places-find-place-select').on('change', function () {
+        var selection = $('#google-places-find-place-select').select2('data')[0];
         $('#google-places-find-place-selection-placeid').val(selection.placeId);
     });
 

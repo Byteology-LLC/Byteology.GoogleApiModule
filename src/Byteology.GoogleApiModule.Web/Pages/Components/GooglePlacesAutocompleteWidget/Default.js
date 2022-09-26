@@ -38,8 +38,8 @@ $(document).ready(function () {
 
     googlePlacesAutoCompleteWidgetInit();
 
-    $(document.body).on('change', '.google-places-auto-complete', function () {
-        var selection = $(this).select2('data')[0];
+    $(document.body).on('change', '#google-places-autocomplete-select', function () {
+        var selection = $('#google-places-autocomplete-select').select2('data')[0];
         $('#google-places-autocomplete-selection-placeid').val(selection.placeId);
     });
 
