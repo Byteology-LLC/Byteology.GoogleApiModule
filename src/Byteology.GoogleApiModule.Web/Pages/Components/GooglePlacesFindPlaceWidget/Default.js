@@ -1,6 +1,6 @@
 ﻿function googlePlacesFindPlaceWidgetInit() {
 
-    var parent = $('.google-places-autocomplete-widget');
+    var parent = $('.google-places-find-place-widget');
 
     $('.google-places-find-place').select2({
         ajax: {
@@ -25,6 +25,9 @@
                 };
             }
         },
+        selectionCssClass: ':all:',
+        dropdownCssClass: ':all:',
+        containerCssClass: ':all:',
         dropdownParent: parent,
         minimumInputLength: 4,
         templateResult: formatPlace,

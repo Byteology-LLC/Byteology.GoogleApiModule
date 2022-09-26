@@ -25,6 +25,10 @@
                 };
             }
         },
+        selectionCssClass: ':all:',
+        dropdownCssClass: ':all:',
+        containerCssClass: ':all:',
+        width: 'element',
         dropdownParent: parent,
         minimumInputLength: 4,
     });
