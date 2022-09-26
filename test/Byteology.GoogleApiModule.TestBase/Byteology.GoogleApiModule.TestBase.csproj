@@ -5,9 +5,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
-    <Version>1.0.5</Version>
-    <FileVersion>1.0.5</FileVersion>
-    <AssemblyVersion>1.0.5</AssemblyVersion>
+    <Version>1.0.6</Version>
+    <FileVersion>1.0.6</FileVersion>
+    <AssemblyVersion>1.0.6</AssemblyVersion>
   </PropertyGroup>
 
 	<ItemGroup>
