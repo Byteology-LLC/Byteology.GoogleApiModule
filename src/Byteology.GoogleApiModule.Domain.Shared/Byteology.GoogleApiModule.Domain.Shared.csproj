@@ -6,9 +6,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-    <Version>1.0.7</Version>
-    <FileVersion>1.0.7</FileVersion>
-    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <Version>1.0.8</Version>
+    <FileVersion>1.0.8</FileVersion>
+    <AssemblyVersion>1.0.8</AssemblyVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageId>ByteologyLLC.GoogleApiModule.Domain.Shared</PackageId>
 	  <Authors>Don Boutwell</Authors>
