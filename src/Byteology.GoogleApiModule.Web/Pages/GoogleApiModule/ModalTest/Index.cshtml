@@ -1,0 +1,18 @@
+﻿@page
+@model Byteology.GoogleApiModule.Web.Pages.GoogleApiModule.ModalTest.IndexModel
+@{
+}
+@section styles{
+    <abp-style-bundle name="GooglePlacesAutoCompleteWidgetBundle" />
+    <abp-style-bundle name="GooglePlacesFindPlaceWidgetBundle" />
+}
+@section scripts {
+    <abp-script-bundle name="GoogleApiModalTestBundle">
+        <abp-script src="/Pages/GoogleApiModule/ModalTest/index.js" />        
+    </abp-script-bundle>
+
+    <abp-script-bundle name="GooglePlacesAutoCompleteWidgetBundle" />
+    <abp-script-bundle name="GooglePlacesFindPlaceWidgetBundle" />
+    
+}
+<abp-button id="test-modal-button">Test the Modal</abp-button>

@@ -1,11 +1,14 @@
-﻿$(document).ready(function () {
+﻿function googlePlacesAutoCompleteInit() {
+
+    var parent = $('.google-places-autocomplete-widget');
+
     $('.google-places-auto-complete').select2({
         ajax: {
             url: '/api/google-apis/google-places/auto-complete',
             type: "post",
             contentType: "application/json",
             dataType: 'json',
-            delay: 250,
+            delay: 250,            
             data: function (params) {
                 return JSON.stringify({
                     "input": params.term
@@ -22,12 +25,21 @@
                 };
             }
         },
-        placeholder: 'Search for an Address',
+        dropdownParent: parent,
         minimumInputLength: 4,
     });
+};
 
-    $('.google-places-auto-complete').on('change', function () {
+$(document).ready(function () {   
+
+    googlePlacesAutoCompleteInit();
+
+    $(document.body).on('change', '.google-places-auto-complete', function () {
         var selection = $(this).select2('data')[0];
         $('#google-places-autocomplete-selection-placeid').val(selection.placeId);
+    });
+
+    $(document).on('select2:open', () => {
+        document.querySelector('.select2-search__field').focus();
     });
 });

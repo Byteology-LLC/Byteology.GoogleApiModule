@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿function googlePlacesFindPlaceInit() {
+
+    var parent = $('.google-places-autocomplete-widget');
+
     $('.google-places-find-place').select2({
         ajax: {
             url: '/api/google-apis/google-places/find',
@@ -22,12 +25,11 @@
                 };
             }
         },
-        placeholder: 'Search for an Place',
+        dropdownParent: parent,
         minimumInputLength: 4,
         templateResult: formatPlace,
         templateSelection: formatPlaceSelection
     });
-
 
     function formatPlace(place) {
         if (place.loading) {
@@ -35,8 +37,8 @@
         }
 
         var $container = $(
-            "<div class='col'>"+
-            "<div class='d-flex flex-start align-items-center' > "+
+            "<div class='col'>" +
+            "<div class='d-flex flex-start align-items-center' > " +
             "<img class='img-thumbnail shadow-1-strong me-3' src='https://via.placeholder.com/65' alt='image' width='65'	height='65' />" +
             "<div class='flex-grow-1 flex-shrink-1'>" +
             "<div>" +
@@ -58,7 +60,7 @@
 
         $container.find(".google-places-find-place_name").text(place.name);
         $container.find(".google-places-find-place_address").text(place.formattedAddress);
-        
+
 
         return $container;
     }
@@ -67,8 +69,20 @@
         return place.formattedAddress || place.text;
     }
 
+};
+
+$(document).ready(function () {
+    
+    googlePlacesFindPlaceInit();
+
+    
+
     $('.google-places-find-place').on('change', function () {
         var selection = $(this).select2('data')[0];
         $('#google-places-find-place-selection-placeid').val(selection.placeId);
+    });
+
+    $(document).on('select2:open', () => {
+        document.querySelector('.select2-search__field').focus();
     });
 });
