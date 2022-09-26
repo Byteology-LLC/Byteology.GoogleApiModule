@@ -1,8 +1,20 @@
 ﻿@using Byteology.GoogleApiModule.Web.Pages.Components.GooglePlacesFindPlaceWidget
 @model GooglePlacesFindPlaceWidgetOptions
 
-<div class="google-places-find-place-widget m-3">
-    <input type="hidden" id="google-places-find-place-selection-placeid" name="@Model.PlaceIdInputName" />
-    <select name="@Model.Name" class="google-places-find-place w-100 @Model.CssClass"></select>
-</div>
+<div class="google-places-find-place-widget d-flex align-items-center @Model.ParentCss">
 
+    @if (!string.IsNullOrEmpty(Model.Label))
+    {
+        <label for="google-places-find-place-select" class="col-sm-2 col-form-label">@Model.Label</label>
+        <div class="col-sm-10">
+            <select id="google-places-find-place-select" name="@Model.AddressInputName" class="google-places-find-place form-control @Model.CssClass"></select>
+        </div>
+    }
+    else
+    {
+        <select id="google-places-find-place-select" name="@Model.AddressInputName" class="google-places-find-place form-control col-sm-12 @Model.CssClass"></select>
+    }
+
+
+</div>
+<input type="hidden" id="google-places-find-place-selection-placeid" name="@Model.PlaceIdInputName" />

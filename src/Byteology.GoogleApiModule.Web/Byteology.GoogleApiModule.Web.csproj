@@ -54,6 +54,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\GoogleApiModule\ModalTest\index.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
