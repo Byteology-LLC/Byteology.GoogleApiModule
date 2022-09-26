@@ -9,6 +9,8 @@ using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Byteology.GoogleApiModule.Permissions;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Microsoft.Extensions.Options;
 
 namespace Byteology.GoogleApiModule.Web;
 
@@ -54,5 +56,41 @@ public class GoogleApiModuleWebModule : AbpModule
         {
                 //Configure authorization.
             });
+
+        Configure<AbpBundlingOptions>(options =>
+        {
+            //Widget Bundle Contributors
+            //Autocomplete Widget
+            options.ScriptBundles.Add("GooglePlacesAutoCompleteWidgetBundle", bundle =>
+            {
+                bundle.AddFiles(
+                    "/Pages/Components/GooglePlacesAutocompleteWidget/Default.js"
+                    );
+            });
+
+            options.StyleBundles.Add("GooglePlacesAutoCompleteWidgetBundle", bundle =>
+            {
+                bundle.AddFiles(
+                    "/Pages/Components/GooglePlacesAutocompleteWidget/Default.css"
+                    );
+            });
+
+            //FindPlace Widget
+            options.ScriptBundles.Add("GooglePlacesFindPlaceWidgetBundle", bundle =>
+            {
+                bundle.AddFiles(
+                    "/Pages/Components/GooglePlacesFindPlaceWidget/Default.js"
+                );
+            });
+
+            options.StyleBundles.Add("GooglePlacesFindPlaceWidgetBundle", bundle =>
+            {
+                bundle.AddFiles(
+                    "/Pages/Components/GooglePlacesFindPlaceWidget/Default.css"
+                    );
+            });
+        });
+
+        
     }
 }
