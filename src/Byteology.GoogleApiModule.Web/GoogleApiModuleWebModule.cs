@@ -11,6 +11,10 @@ using Volo.Abp.VirtualFileSystem;
 using Byteology.GoogleApiModule.Permissions;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Microsoft.Extensions.Options;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using System.Linq;
+using Volo.Abp.AspNetCore.Mvc.UI.Packages.Select2;
+using Byteology.GoogleApiModule.Web.Pages.Bundles.Contributors;
 
 namespace Byteology.GoogleApiModule.Web;
 
@@ -59,6 +63,13 @@ public class GoogleApiModuleWebModule : AbpModule
 
         Configure<AbpBundlingOptions>(options =>
         {
+            options.ScriptBundles.Configure(
+                StandardBundles.Scripts.Global,
+                bundleConfiguration =>
+                {
+                    bundleConfiguration.Contributors.Replace<Select2ScriptContributor, GoogleApiModuleBaselineBundleContributor>();
+                });
+
             //Widget Bundle Contributors
             //Autocomplete Widget
             options.ScriptBundles.Add("GooglePlacesAutoCompleteWidgetBundle", bundle =>
@@ -80,6 +91,7 @@ public class GoogleApiModuleWebModule : AbpModule
             {
                 bundle.AddFiles(
                     "/Pages/Components/GooglePlacesFindPlaceWidget/Default.js"
+
                 );
             });
 
