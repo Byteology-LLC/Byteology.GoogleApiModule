@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     $(document.body).on('change', '#google-places-autocomplete-select', function () {
         var selection = $('#google-places-autocomplete-select').select2('data')[0];
-        $('#google-places-autocomplete-selection-placeid').val(selection.placeId);
+        $('#google-places-autocomplete-selection-placeid').val(selection.placeId).trigger('change');
     });
 
     $(document).on('select2:open', () => {
