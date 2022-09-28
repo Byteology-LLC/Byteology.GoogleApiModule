@@ -15,6 +15,9 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using System.Linq;
 using Volo.Abp.AspNetCore.Mvc.UI.Packages.Select2;
 using Byteology.GoogleApiModule.Web.Pages.Bundles.Contributors;
+using System.Collections.Generic;
+using System;
+using Volo.Abp.Json.SystemTextJson;
 
 namespace Byteology.GoogleApiModule.Web;
 
@@ -40,6 +43,32 @@ public class GoogleApiModuleWebModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        Configure<AbpSystemTextJsonSerializerOptions>(options =>
+        {
+
+            //the GoogleApi library responses aren't currently working correctly with System.Text.Json serialization. This basically just tells the system to
+            //use Newtonsoft serialization for every type inside the main assemblies for that library until they get the conversion done.
+
+            //TODO: Remove this once the GoogleApi gets System.Json.Text support.
+
+            var placesAssembly = typeof(GoogleApi.GooglePlaces).Assembly;
+            var mapsAssembly = typeof(GoogleApi.GoogleMaps).Assembly;
+            var searchAssembly = typeof(GoogleApi.GoogleSearch).Assembly;
+            var translateAssembly = typeof(GoogleApi.GoogleTranslate).Assembly;
+
+            var types = new List<Type>();
+            types.AddRange(placesAssembly.GetTypes().Where(w => w.FullName.Contains("GoogleApi", StringComparison.InvariantCultureIgnoreCase)));
+            types.AddRange(mapsAssembly.GetTypes().Where(w => w.FullName.Contains("GoogleApi", StringComparison.InvariantCultureIgnoreCase)));
+            types.AddRange(searchAssembly.GetTypes().Where(w => w.FullName.Contains("GoogleApi", StringComparison.InvariantCultureIgnoreCase)));
+            types.AddRange(translateAssembly.GetTypes().Where(w => w.FullName.Contains("GoogleApi", StringComparison.InvariantCultureIgnoreCase)));
+
+            foreach (var t in types)
+            {
+                options.UnsupportedTypes.AddIfNotContains(t);
+            }
+        });
+
+
         Configure<AbpNavigationOptions>(options =>
         {
             options.MenuContributors.Add(new GoogleApiModuleMenuContributor());
@@ -51,6 +80,7 @@ public class GoogleApiModuleWebModule : AbpModule
         });
 
         context.Services.AddAutoMapperObjectMapper<GoogleApiModuleWebModule>();
+
         Configure<AbpAutoMapperOptions>(options =>
         {
             options.AddMaps<GoogleApiModuleWebModule>(validate: true);
