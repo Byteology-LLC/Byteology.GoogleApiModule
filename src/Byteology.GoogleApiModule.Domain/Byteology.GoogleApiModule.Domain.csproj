@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
     <Version>1.0.9</Version>
     <FileVersion>1.0.9</FileVersion>
@@ -31,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GoogleApi" Version="4.2.6" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.3.4" />
+	<PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.4" />
     <ProjectReference Include="..\Byteology.GoogleApiModule.Domain.Shared\Byteology.GoogleApiModule.Domain.Shared.csproj" />
   </ItemGroup>
 

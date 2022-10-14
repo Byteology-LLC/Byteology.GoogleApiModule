@@ -19,56 +19,32 @@ namespace Byteology.GoogleApiModule.Apis.Translate
 {
     public class GoogleTranslateAppService : ApiBaseAppService, IGoogleTranslateAppService
     {
-        public GoogleTranslateAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Translate)
+        private readonly GoogleTranslateManager Manager;
+        public GoogleTranslateAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
+            IServiceProvider serviceProvider, GoogleTranslateManager manager) : base(options, localizer, serviceProvider, EndPointType.Translate)
         {
+            Manager = manager;
         }
 
         public async Task<DetectResponse> DetectAsync(GoogleTranslateDetectInput input)
         {
-            var _detectApi = new GoogleTranslate.DetectApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Translate.Detect);
 
-            var request = ObjectMapper.Map<GoogleTranslateDetectInput, DetectRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _detectApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.DetectAsync(input);
         }
 
         public async Task<LanguagesResponse> LanguagesAsync(GoogleTranslateLanguagesInput input)
         {
-            var _languagesApi = new GoogleTranslate.LanguagesApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Translate.Languages);
 
-            var request = ObjectMapper.Map<GoogleTranslateLanguagesInput, LanguagesRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _languagesApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.LanguagesAsync(input);
         }
 
         public async Task<TranslateResponse> TranslateAsync(GoogleTranslateInput input)
         {
-            var _translateApi = new GoogleTranslate.TranslateApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Translate.Default);
 
-            var request = ObjectMapper.Map<GoogleTranslateInput, TranslateRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _translateApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.TranslateAsync(input);
         }
     }
 }

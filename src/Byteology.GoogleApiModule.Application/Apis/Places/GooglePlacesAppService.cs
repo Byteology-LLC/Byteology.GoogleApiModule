@@ -27,25 +27,18 @@ namespace Byteology.GoogleApiModule.Apis.Places
 {
     public class GooglePlacesAppService : ApiBaseAppService, IGooglePlacesAppService
     {
-        public GooglePlacesAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Places)
+        private readonly GooglePlacesManager Manager;
+        public GooglePlacesAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
+            IServiceProvider serviceProvider, GooglePlacesManager manager) : base(options, localizer, serviceProvider, EndPointType.Places)
         {
+            Manager = manager;
         }
 
         public async Task<PlacesAutoCompleteResponse> AutoCompleteAsync(GooglePlacesAutoCompleteInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.AutoComplete);
 
-            var _autocompleteApi = new GooglePlaces.AutoCompleteApi();
-
-            var request = ObjectMapper.Map<GooglePlacesAutoCompleteInput, PlacesAutoCompleteRequest>(input);
-            request.Key = Options.APIKey;
-            request.SessionToken = GetSessionToken();
-
-            var response = await _autocompleteApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.AutoCompleteAsync(input);
         }
 
 
@@ -53,17 +46,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.Details);
 
-            var _detailsApi = new GooglePlaces.DetailsApi();
-
-            var request = ObjectMapper.Map<GooglePlacesDetailsInput, PlacesDetailsRequest>(input);
-            request.Key = Options.APIKey;
-            request.SessionToken = GetSessionToken();
-
-            var response = await _detailsApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.DetailsAsync(input);
         }
 
 
@@ -71,80 +54,35 @@ namespace Byteology.GoogleApiModule.Apis.Places
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.Search.Find);
 
-            var _findApi = new GooglePlaces.Search.FindSearchApi();
-
-            var request = ObjectMapper.Map<GooglePlacesFindInput, PlacesFindSearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _findApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.FindAsync(input);
         }
 
         public async Task<PlacesNearbySearchResponse> FindNearbyAsync(GooglePlacesFindNearbyInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.Search.NearBy);
 
-            var _nearbyApi = new GooglePlaces.Search.NearBySearchApi();
-
-            var request = ObjectMapper.Map<GooglePlacesFindNearbyInput, PlacesNearBySearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _nearbyApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.FindNearbyAsync(input);
         }
 
         public async Task<PlacesPhotosResponse> PhotosAsync(GooglePlacesPhotosInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.Photos);
 
-            var _photosApi = new GooglePlaces.PhotosApi();
-
-            var request = ObjectMapper.Map<GooglePlacesPhotosInput, PlacesPhotosRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _photosApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.PhotosAsync(input);
         }
 
         public async Task<PlacesQueryAutoCompleteResponse> QueryAutoCompleteAsync(GooglePlacesQueryAutoCompleteInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.QueryAutoComplete);
 
-            var _queryAutoCompleteApi = new GooglePlaces.QueryAutoCompleteApi();
-
-            var request = ObjectMapper.Map<GooglePlacesQueryAutoCompleteInput, PlacesQueryAutoCompleteRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _queryAutoCompleteApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.QueryAutoCompleteAsync(input);
         }
 
         public async Task<PlacesTextSearchResponse> TextSearchAsync(GooglePlacesTextSearchInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Places.Search.Text);
 
-            var _textSearchApi = new GooglePlaces.Search.TextSearchApi();
-
-            var request = ObjectMapper.Map<GooglePlacesTextSearchInput, PlacesTextSearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _textSearchApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.TextSearchAsync(input);
         }
     }
 }

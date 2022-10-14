@@ -22,13 +22,15 @@ namespace Byteology.GoogleApiModule.Apis.Search
 {
     public class GoogleSearchAppService : ApiBaseAppService, IGoogleSearchAppService
     {
-        public GoogleSearchAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider) : base(options, localizer, serviceProvider, EndPointType.Search)
+        private readonly GoogleSearchManager Manager;
+        public GoogleSearchAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
+            IServiceProvider serviceProvider, GoogleSearchManager manager) : base(options, localizer, serviceProvider, EndPointType.Search)
         {
+            Manager = manager;
         }
 
         public async Task<BaseSearchResponse> ImageSearchAsync(GoogleSearchImageSearchInput input)
         {
-            var _imageSearchApi = new GoogleApi.GoogleSearch.ImageSearchApi();
             if (Options.SearchEngineId == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
@@ -37,69 +39,32 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Search.Image);
 
-            var request = ObjectMapper.Map<GoogleSearchImageSearchInput, ImageSearchRequest>(input);
-            request.Key = Options.APIKey;
-            request.SearchEngineId = Options.SearchEngineId;
-
-            var response = await _imageSearchApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.ImageSearchAsync(input);
         }
 
         public async Task<ChannelSearchResponse> VideoChannelSearchAsync(GoogleSearchVideoSearchInput input)
         {
-            var _videoSearchChannelApi = new GoogleApi.GoogleSearch.VideoSearch.ChannelsApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Search.Video.Channels);
 
-            var request = ObjectMapper.Map<GoogleSearchVideoSearchInput, ChannelSearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _videoSearchChannelApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.VideoChannelSearchAsync(input);
         }
 
         public async Task<PlaylistSearchResponse> VideoPlaylistSearchAsync(GoogleSearchVideoPlaylistSearchInput input)
         {
-            var _videoSearchPlaylistsApi = new GoogleApi.GoogleSearch.VideoSearch.PlaylistsApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Search.Video.Playlists);
 
-            var request = ObjectMapper.Map<GoogleSearchVideoPlaylistSearchInput, PlaylistSearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _videoSearchPlaylistsApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.VideoPlaylistSearchAsync(input);
         }
 
         public async Task<VideoSearchResponse> VideoSearchAsync(GoogleSearchVideoSearchInput input)
         {
-            var _videoSearchVideosApi = new GoogleApi.GoogleSearch.VideoSearch.VideosApi();
-
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Search.Video.Videos);
 
-            var request = ObjectMapper.Map<GoogleSearchVideoSearchInput, VideoSearchRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _videoSearchVideosApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.VideoSearchAsync(input);
         }
 
         public async Task<BaseSearchResponse> WebSearchAsync(GoogleSearchWebSearchInput input)
         {
-            var _webSearchApi = new GoogleApi.GoogleSearch.WebSearchApi();
-
             if (Options.SearchEngineId == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
@@ -107,15 +72,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Search.Web);
 
-            var request = ObjectMapper.Map<GoogleSearchWebSearchInput, WebSearchRequest>(input);
-            request.Key = Options.APIKey;
-            request.SearchEngineId = Options.SearchEngineId;
-
-            var response = await _webSearchApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.WebSearchAsync(input);
         }
     }
 }

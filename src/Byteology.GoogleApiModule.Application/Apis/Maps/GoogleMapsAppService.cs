@@ -38,171 +38,83 @@ namespace Byteology.GoogleApiModule.Apis.Maps
 {
     public class GoogleMapsAppService: ApiBaseAppService, IGoogleMapsAppService
     {
+        private readonly GoogleMapsManager Manager;
+
         public GoogleMapsAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer,
-             IServiceProvider serviceProvider)
+             IServiceProvider serviceProvider, GoogleMapsManager manager)
             : base(options, localizer, serviceProvider, Enums.EndPointType.Maps)
         {
-
+            Manager = manager;
         }
 
         public virtual async Task<DirectionsResponse> DirectionsAsync(GoogleMapsDirectionsInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Directions);
 
-            var _directionsApi = new DirectionsApi();
-
-            var request = ObjectMapper.Map<GoogleMapsDirectionsInput, DirectionsRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _directionsApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.DirectionsAsync(input);
         }
 
         public virtual async Task<DistanceMatrixResponse> DistanceAsync(GoogleMapsDistanceInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.DistanceMatrix);
 
-            var _distanceApi = new DistanceMatrixApi();
-
-            var request = ObjectMapper.Map<GoogleMapsDistanceInput, DistanceMatrixRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _distanceApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.DistanceAsync(input);
         }
 
         public virtual async Task<ElevationResponse> ElevationAsync(GoogleMapsElevationInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Elevation);
 
-            var _elevationApi = new ElevationApi();
-
-            var request = ObjectMapper.Map<GoogleMapsElevationInput, ElevationRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _elevationApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.ElevationAsync(input);
         }
 
         public virtual async Task<GeocodeResponse> GeocodeAddressAsync(GoogleMapsGeocodeAddressInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Geocode.Address);
 
-            var _geocodeAddressApi = new Geocode.AddressGeocodeApi();
-
-            var request = ObjectMapper.Map<GoogleMapsGeocodeAddressInput, AddressGeocodeRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _geocodeAddressApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.GeocodeAddressAsync(input);
         }
 
         public virtual async Task<GeocodeResponse> GeocodeLocationAsync(GoogleMapsGeocodeLocationInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Geocode.Location);
 
-            var _geocodeLocationApi = new Geocode.LocationGeocodeApi();
-
-            var request = ObjectMapper.Map<GoogleMapsGeocodeLocationInput, LocationGeocodeRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _geocodeLocationApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.GeocodeLocationAsync(input);
         }
 
         public virtual async Task<GeocodeResponse> GeocodePlaceAsync(GoogleMapsGeocodePlaceInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Geocode.Place);
 
-            var _geocodePlaceApi = new Geocode.PlaceGeocodeApi();
-
-            var request = ObjectMapper.Map<GoogleMapsGeocodePlaceInput, PlaceGeocodeRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _geocodePlaceApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.GeocodePlaceAsync(input);
         }
 
         public virtual async Task<PlusCodeGeocodeResponse> GeocodePlusCodeAsync(GoogleMapsGeocodePlusCodeInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Geocode.PlusCode);
 
-            var _geocodePlusCodeApi = new Geocode.PlusCodeGeocodeApi();
-
-            var request = ObjectMapper.Map<GoogleMapsGeocodePlusCodeInput, PlusCodeGeocodeRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _geocodePlusCodeApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.GeocodePlusCodeAsync(input);
         }
 
         public virtual async Task<GeolocationResponse> GeolocationAsync(GoogleMapsGeolocationInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Geolocation);
 
-            var _geolocationApi = new GeolocationApi();
-
-            var request = ObjectMapper.Map<GoogleMapsGeolocationInput, GeolocationRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _geolocationApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.GeolocationAsync(input);
         }
 
         public virtual async Task<NearestRoadsResponse> NearestRoadsAsync(GoogleMapsNearestRoadsInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Roads.NearestRoads);
 
-            var _nearestRoadsApi = new Roads.NearestRoadsApi();
-
-            var request = ObjectMapper.Map<GoogleMapsNearestRoadsInput, NearestRoadsRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _nearestRoadsApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.NearestRoadsAsync(input);
         }
 
         public virtual async Task<SnapToRoadsResponse> SnapToRoadsAsync(GoogleMapsSnapToRoadsInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Roads.SnapToRoads);
 
-            var _snapToRoadApi = new Roads.SnapToRoadApi();
-
-            var request = ObjectMapper.Map<GoogleMapsSnapToRoadsInput, SnapToRoadsRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _snapToRoadApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.SnapToRoadsAsync(input);
         }
 
         public virtual async Task<SpeedLimitsResponse> SpeedLimitsAsync(GoogleMapsRoadsSpeedLimitInput input)
@@ -214,16 +126,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             {
                 await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Roads.SpeedLimits);
 
-                var _speedLimitsApi = new Roads.SpeedLimitsApi();
-
-                var request = ObjectMapper.Map<GoogleMapsRoadsSpeedLimitInput, SpeedLimitsRequest>(input);
-                request.Key = Options.APIKey;
-
-                var response = await _speedLimitsApi.QueryAsync(request, GetCancellationToken());
-
-                CheckResponse(response);
-
-                return response;
+                return await Manager.SpeedLimitsAsync(input);
             }
             else
                 return new SpeedLimitsResponse();
@@ -234,48 +137,21 @@ namespace Byteology.GoogleApiModule.Apis.Maps
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.StaticMaps);
 
-            var _staticMapsApi = new StaticMapsApi();
-
-            var request = ObjectMapper.Map<GoogleMapsStaticMapsInput, StaticMapsRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _staticMapsApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.StaticMapsAsync(input);
         }
 
         public async Task<StreetViewResponse> StreetViewAsync(GoogleMapsStreetViewInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.StreetView);
 
-            var _streetViewApi = new StreetViewApi();
-
-            var request = ObjectMapper.Map<GoogleMapsStreetViewInput, StreetViewRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _streetViewApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.StreetViewAsync(input);
         }
 
         public async Task<TimeZoneResponse> TimeZoneAsync(GoogleMapsTimeZoneInput input)
         {
             await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.TimeZone);
 
-            var _timeZoneApi = new TimeZoneApi();
-
-            var request = ObjectMapper.Map<GoogleMapsTimeZoneInput, TimeZoneRequest>(input);
-            request.Key = Options.APIKey;
-
-            var response = await _timeZoneApi.QueryAsync(request, GetCancellationToken());
-
-            CheckResponse(response);
-
-            return response;
+            return await Manager.TimeZoneAsync(input);
         }
     }
 }
