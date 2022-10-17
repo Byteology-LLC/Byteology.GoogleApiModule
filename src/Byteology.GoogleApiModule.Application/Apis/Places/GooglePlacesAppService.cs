@@ -22,14 +22,16 @@ using GoogleApi.Entities.Places.AutoComplete.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using Byteology.GoogleApiModule.Permissions;
 using Byteology.GoogleApiModule.Apis.Places.Inputs;
+using Byteology.GoogleApiModule.Apis.Maps;
+using Byteology.GoogleApiModule.Settings;
 
 namespace Byteology.GoogleApiModule.Apis.Places
 {
     public class GooglePlacesAppService : ApiBaseAppService, IGooglePlacesAppService
     {
         private readonly GooglePlacesManager Manager;
-        public GooglePlacesAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, GooglePlacesManager manager) : base(options, localizer, serviceProvider, EndPointType.Places)
+        public GooglePlacesAppService(GoogleApiModuleSettingsManager settingsManager, IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, GooglePlacesManager manager) : base(settingsManager, localizer, serviceProvider, Enums.EndPointType.Places)
         {
             Manager = manager;
         }

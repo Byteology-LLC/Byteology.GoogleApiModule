@@ -15,15 +15,17 @@ using System.Threading.Tasks;
 using Byteology.GoogleApiModule.Apis.Translate.Inputs;
 using Volo.Abp.Users;
 using Volo.Abp.ObjectMapping;
+using Byteology.GoogleApiModule.Settings;
 
 namespace Byteology.GoogleApiModule.Apis.Translate
 {
     public class GoogleTranslateManager : ApiManagerBase
     {
         public GoogleTranslateManager(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper) 
-            : base(options, localizer, serviceProvider, currentUser, objectMapper, EndPointType.Translate)
+            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper, GoogleApiModuleSettingsManager settingsManager) 
+            : base(localizer, serviceProvider, currentUser, objectMapper, settingsManager, EndPointType.Translate)
         {
+
         }
 
         public async Task<DetectResponse> DetectAsync(GoogleTranslateDetectInput input)
@@ -32,7 +34,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
 
 
             var request = ObjectMapper.Map<GoogleTranslateDetectInput, DetectRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _detectApi.QueryAsync(request);
 
@@ -47,7 +49,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
 
 
             var request = ObjectMapper.Map<GoogleTranslateLanguagesInput, LanguagesRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _languagesApi.QueryAsync(request);
 
@@ -62,7 +64,7 @@ namespace Byteology.GoogleApiModule.Apis.Translate
 
 
             var request = ObjectMapper.Map<GoogleTranslateInput, TranslateRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _translateApi.QueryAsync(request);
 

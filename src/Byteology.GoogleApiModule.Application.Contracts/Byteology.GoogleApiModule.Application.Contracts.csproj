@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="5.3.4" />
     <PackageReference Include="Volo.Abp.Authorization" Version="5.3.4" />
     <ProjectReference Include="..\Byteology.GoogleApiModule.Domain.Shared\Byteology.GoogleApiModule.Domain.Shared.csproj" />

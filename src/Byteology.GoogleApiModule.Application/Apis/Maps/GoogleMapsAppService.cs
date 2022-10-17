@@ -33,6 +33,9 @@ using Byteology.GoogleApiModule.Options;
 using Byteology.GoogleApiModule.Localization;
 using Byteology.GoogleApiModule.Permissions;
 using Byteology.GoogleApiModule.Apis.Maps.Inputs;
+using Byteology.GoogleApiModule.Settings;
+using Byteology.GoogleApiModule.Enums;
+using Volo.Abp.Settings;
 
 namespace Byteology.GoogleApiModule.Apis.Maps
 {
@@ -40,12 +43,12 @@ namespace Byteology.GoogleApiModule.Apis.Maps
     {
         private readonly GoogleMapsManager Manager;
 
-        public GoogleMapsAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer,
-             IServiceProvider serviceProvider, GoogleMapsManager manager)
-            : base(options, localizer, serviceProvider, Enums.EndPointType.Maps)
+        public GoogleMapsAppService(GoogleApiModuleSettingsManager settingsManager, IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, GoogleMapsManager manager) : base(settingsManager, localizer, serviceProvider, Enums.EndPointType.Maps)
         {
             Manager = manager;
         }
+
 
         public virtual async Task<DirectionsResponse> DirectionsAsync(GoogleMapsDirectionsInput input)
         {
@@ -122,7 +125,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             //Speed limits is a premium endpoint, meaning it will throw HTTP 403 errors if you attempt to hit it with a trial key.
             //Instead of dealing with this in test, I am adding a flag to essentailly bypass the call if you disable premium endpoints
             //in the options.
-            if (Options.IncludePremiumEndpoints)
+            if (await SettingProvider.GetAsync<bool>(GoogleApiModuleSettings.IncludePremiumEndpoints, defaultValue:false))
             {
                 await CheckAuthorizationAsync(GoogleApiModulePermissions.Maps.Roads.SpeedLimits);
 

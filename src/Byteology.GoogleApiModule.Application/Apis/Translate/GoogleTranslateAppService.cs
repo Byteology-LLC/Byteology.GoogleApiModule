@@ -14,14 +14,16 @@ using System;
 using System.Threading.Tasks;
 using Byteology.GoogleApiModule.Apis.Translate.Inputs;
 using Byteology.GoogleApiModule.Permissions;
+using Byteology.GoogleApiModule.Apis.Search;
+using Byteology.GoogleApiModule.Settings;
 
 namespace Byteology.GoogleApiModule.Apis.Translate
 {
     public class GoogleTranslateAppService : ApiBaseAppService, IGoogleTranslateAppService
     {
         private readonly GoogleTranslateManager Manager;
-        public GoogleTranslateAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, GoogleTranslateManager manager) : base(options, localizer, serviceProvider, EndPointType.Translate)
+        public GoogleTranslateAppService(GoogleApiModuleSettingsManager settingsManager, IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, GoogleTranslateManager manager) : base(settingsManager, localizer, serviceProvider, Enums.EndPointType.Translate)
         {
             Manager = manager;
         }

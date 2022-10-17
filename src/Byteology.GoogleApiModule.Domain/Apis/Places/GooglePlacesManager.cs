@@ -23,14 +23,15 @@ using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using Byteology.GoogleApiModule.Apis.Places.Inputs;
 using Volo.Abp.Users;
 using Volo.Abp.ObjectMapping;
+using Byteology.GoogleApiModule.Settings;
 
 namespace Byteology.GoogleApiModule.Apis.Places
 {
     public class GooglePlacesManager : ApiManagerBase
     {
-        public GooglePlacesManager(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper) 
-            : base(options, localizer, serviceProvider, currentUser, objectMapper, EndPointType.Places)
+        public GooglePlacesManager(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper, GoogleApiModuleSettingsManager settingsManager)
+            : base(localizer, serviceProvider, currentUser, objectMapper, settingsManager, EndPointType.Places)
         {
         }
 
@@ -39,7 +40,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _autocompleteApi = new GooglePlaces.AutoCompleteApi();
 
             var request = ObjectMapper.Map<GooglePlacesAutoCompleteInput, PlacesAutoCompleteRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
             request.SessionToken = GetSessionToken();
 
             var response = await _autocompleteApi.QueryAsync(request);
@@ -55,7 +56,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _detailsApi = new GooglePlaces.DetailsApi();
 
             var request = ObjectMapper.Map<GooglePlacesDetailsInput, PlacesDetailsRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
             request.SessionToken = GetSessionToken();
 
             var response = await _detailsApi.QueryAsync(request);
@@ -72,7 +73,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _findApi = new GooglePlaces.Search.FindSearchApi();
 
             var request = ObjectMapper.Map<GooglePlacesFindInput, PlacesFindSearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _findApi.QueryAsync(request);
 
@@ -87,7 +88,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _nearbyApi = new GooglePlaces.Search.NearBySearchApi();
 
             var request = ObjectMapper.Map<GooglePlacesFindNearbyInput, PlacesNearBySearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _nearbyApi.QueryAsync(request);
 
@@ -102,7 +103,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _photosApi = new GooglePlaces.PhotosApi();
 
             var request = ObjectMapper.Map<GooglePlacesPhotosInput, PlacesPhotosRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _photosApi.QueryAsync(request);
 
@@ -117,7 +118,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _queryAutoCompleteApi = new GooglePlaces.QueryAutoCompleteApi();
 
             var request = ObjectMapper.Map<GooglePlacesQueryAutoCompleteInput, PlacesQueryAutoCompleteRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _queryAutoCompleteApi.QueryAsync(request);
 
@@ -132,7 +133,7 @@ namespace Byteology.GoogleApiModule.Apis.Places
             var _textSearchApi = new GooglePlaces.Search.TextSearchApi();
 
             var request = ObjectMapper.Map<GooglePlacesTextSearchInput, PlacesTextSearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _textSearchApi.QueryAsync(request);
 

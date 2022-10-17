@@ -1,8 +1,10 @@
 ﻿using Byteology.GoogleApiModule.Enums;
 using Byteology.GoogleApiModule.Localization;
 using Byteology.GoogleApiModule.Options;
+using Byteology.GoogleApiModule.Settings;
 using GoogleApi.Entities.Common.Enums;
 using GoogleApi.Entities.Interfaces;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,27 +18,31 @@ using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Settings;
 
 namespace Byteology.GoogleApiModule.Apis
 {
     public class ApiBaseAppService : ApplicationService
     {
-        public readonly GoogleApiModuleOptions Options;
+        protected GoogleApiModuleSettingsManager SettingsManager { get; }
+        protected GoogleApiModuleSettingsDto Settings { get; }
+
+
         public readonly IStringLocalizer<GoogleApiModuleResource> Localizer;
         private readonly IServiceProvider _serviceProvider;
         public readonly IHttpContextAccessor HttpContextAccessor;
-        public readonly string APIKey;
 
-        protected ApiBaseAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, IServiceProvider serviceProvider, EndPointType? type = null)
-        {
-            Options = options.Value;
+
+        protected ApiBaseAppService(GoogleApiModuleSettingsManager settingsManager, IStringLocalizer<GoogleApiModuleResource> localizer, 
+            IServiceProvider serviceProvider, EndPointType? type = null)
+        {            
             Localizer = localizer;
-
-            APIKey = GetApiKey(type);
-
             _serviceProvider = serviceProvider;
-
             HttpContextAccessor = _serviceProvider.GetService<IHttpContextAccessor>();
+            SettingsManager = settingsManager;
+
+
+            Settings = Task.Run(async () => await settingsManager.GetAsync()).Result;
         }
 
         /// <summary>
@@ -52,19 +58,19 @@ namespace Byteology.GoogleApiModule.Apis
             switch (type)
             {
                 case EndPointType.Maps:
-                    apiKey = string.IsNullOrWhiteSpace(Options.MapsApiKey) ? Options.APIKey : Options.MapsApiKey;
+                    apiKey = string.IsNullOrWhiteSpace(Settings.MapsApiKey) ? Settings.ApiKey : Settings.MapsApiKey;
                     break;
                 case EndPointType.Places:
-                    apiKey = string.IsNullOrWhiteSpace(Options.PlacesApiKey) ? Options.APIKey : Options.PlacesApiKey;
+                    apiKey = string.IsNullOrWhiteSpace(Settings.PlacesApiKey) ? Settings.ApiKey : Settings.PlacesApiKey;
                     break;
                 case EndPointType.Search:
-                    apiKey = string.IsNullOrWhiteSpace(Options.SearchApiKey) ? Options.APIKey : Options.SearchApiKey;
+                    apiKey = string.IsNullOrWhiteSpace(Settings.SearchApiKey) ? Settings.ApiKey : Settings.SearchApiKey;
                     break;
                 case EndPointType.Translate:
-                    apiKey = string.IsNullOrWhiteSpace(Options.TranslateApiKey) ? Options.APIKey : Options.TranslateApiKey;
+                    apiKey = string.IsNullOrWhiteSpace(Settings.TranslateApiKey) ? Settings.ApiKey : Settings.TranslateApiKey;
                     break;
                 default:
-                    apiKey = Options.APIKey;
+                    apiKey = Settings.ApiKey;
                     break;
             }
 
@@ -82,12 +88,12 @@ namespace Byteology.GoogleApiModule.Apis
         /// <returns></returns>
         protected async Task<bool> CheckAuthorizationAsync(string permissionName)
         {
-            if (Options.RequireGranularPermissions)
+            if (await SettingProvider.GetAsync<bool>(GoogleApiModuleSettings.RequireGranularPermissions, defaultValue: false))
             {
                 await AuthorizationService.CheckAsync(permissionName);
             }
 
-            if (Options.RequireAuthentication)
+            if (await SettingProvider.GetAsync<bool>(GoogleApiModuleSettings.RequireAuthentication, defaultValue: true))
             {
 
                 try

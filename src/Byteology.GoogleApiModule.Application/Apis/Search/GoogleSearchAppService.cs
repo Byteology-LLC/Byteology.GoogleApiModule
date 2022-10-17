@@ -1,8 +1,10 @@
-﻿using Byteology.GoogleApiModule.Apis.Search.Inputs;
+﻿using Byteology.GoogleApiModule.Apis.Places;
+using Byteology.GoogleApiModule.Apis.Search.Inputs;
 using Byteology.GoogleApiModule.Enums;
 using Byteology.GoogleApiModule.Localization;
 using Byteology.GoogleApiModule.Options;
 using Byteology.GoogleApiModule.Permissions;
+using Byteology.GoogleApiModule.Settings;
 using GoogleApi.Entities.Search;
 using GoogleApi.Entities.Search.Image.Request;
 using GoogleApi.Entities.Search.Video.Channels.Request;
@@ -23,15 +25,15 @@ namespace Byteology.GoogleApiModule.Apis.Search
     public class GoogleSearchAppService : ApiBaseAppService, IGoogleSearchAppService
     {
         private readonly GoogleSearchManager Manager;
-        public GoogleSearchAppService(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, GoogleSearchManager manager) : base(options, localizer, serviceProvider, EndPointType.Search)
+        public GoogleSearchAppService(GoogleApiModuleSettingsManager settingsManager, IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, GoogleSearchManager manager) : base(settingsManager, localizer, serviceProvider, Enums.EndPointType.Search)
         {
             Manager = manager;
         }
 
         public async Task<BaseSearchResponse> ImageSearchAsync(GoogleSearchImageSearchInput input)
         {
-            if (Options.SearchEngineId == null)
+            if (await SettingProvider.GetOrNullAsync(GoogleApiModuleSettings.SearchEngineId) == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
             }
@@ -65,7 +67,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
         public async Task<BaseSearchResponse> WebSearchAsync(GoogleSearchWebSearchInput input)
         {
-            if (Options.SearchEngineId == null)
+            if (await SettingProvider.GetOrNullAsync(GoogleApiModuleSettings.SearchEngineId) == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
             }

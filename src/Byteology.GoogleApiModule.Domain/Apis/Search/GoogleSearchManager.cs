@@ -2,6 +2,7 @@
 using Byteology.GoogleApiModule.Enums;
 using Byteology.GoogleApiModule.Localization;
 using Byteology.GoogleApiModule.Options;
+using Byteology.GoogleApiModule.Settings;
 using GoogleApi.Entities.Search;
 using GoogleApi.Entities.Search.Image.Request;
 using GoogleApi.Entities.Search.Video.Channels.Request;
@@ -24,22 +25,23 @@ namespace Byteology.GoogleApiModule.Apis.Search
     public class GoogleSearchManager: ApiManagerBase
     {
         public GoogleSearchManager(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper) 
-            : base(options, localizer, serviceProvider, currentUser, objectMapper, EndPointType.Search)
+            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper, GoogleApiModuleSettingsManager settingsManager) 
+            : base(localizer, serviceProvider, currentUser, objectMapper, settingsManager, EndPointType.Search)
         {
+
         }
 
         public async Task<BaseSearchResponse> ImageSearchAsync(GoogleSearchImageSearchInput input)
         {
             var _imageSearchApi = new GoogleApi.GoogleSearch.ImageSearchApi();
-            if (Options.SearchEngineId == null)
+            if (Settings.SearchEngineId == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
             }
 
             var request = ObjectMapper.Map<GoogleSearchImageSearchInput, ImageSearchRequest>(input);
-            request.Key = Options.APIKey;
-            request.SearchEngineId = Options.SearchEngineId;
+            request.Key = Settings.ApiKey;
+            request.SearchEngineId = Settings.SearchEngineId;
 
             var response = await _imageSearchApi.QueryAsync(request);
 
@@ -54,7 +56,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
 
             var request = ObjectMapper.Map<GoogleSearchVideoSearchInput, ChannelSearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _videoSearchChannelApi.QueryAsync(request);
 
@@ -69,7 +71,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
 
             var request = ObjectMapper.Map<GoogleSearchVideoPlaylistSearchInput, PlaylistSearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _videoSearchPlaylistsApi.QueryAsync(request);
 
@@ -84,7 +86,7 @@ namespace Byteology.GoogleApiModule.Apis.Search
 
 
             var request = ObjectMapper.Map<GoogleSearchVideoSearchInput, VideoSearchRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _videoSearchVideosApi.QueryAsync(request);
 
@@ -97,15 +99,15 @@ namespace Byteology.GoogleApiModule.Apis.Search
         {
             var _webSearchApi = new GoogleApi.GoogleSearch.WebSearchApi();
 
-            if (Options.SearchEngineId == null)
+            if (Settings.SearchEngineId == null)
             {
                 throw new UserFriendlyException(Localizer["Error:MissingSearchEngineId"]);
             }
 
 
             var request = ObjectMapper.Map<GoogleSearchWebSearchInput, WebSearchRequest>(input);
-            request.Key = Options.APIKey;
-            request.SearchEngineId = Options.SearchEngineId;
+            request.Key = Settings.ApiKey;
+            request.SearchEngineId = Settings.SearchEngineId;
 
             var response = await _webSearchApi.QueryAsync(request);
 

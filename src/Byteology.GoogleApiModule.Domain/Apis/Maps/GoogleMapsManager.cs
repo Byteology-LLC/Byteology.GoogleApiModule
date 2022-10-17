@@ -36,14 +36,17 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.Users;
 using Byteology.GoogleApiModule.Enums;
 using Volo.Abp.ObjectMapping;
+using Byteology.GoogleApiModule.Settings;
+using Volo.Abp.DependencyInjection;
 
 namespace Byteology.GoogleApiModule.Apis.Maps
 {
-    public class GoogleMapsManager: ApiManagerBase
+    public class GoogleMapsManager: ApiManagerBase, ITransientDependency
     {
-        public GoogleMapsManager(IOptions<GoogleApiModuleOptions> options, IStringLocalizer<GoogleApiModuleResource> localizer, 
-            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper) 
-            : base(options, localizer, serviceProvider, currentUser, objectMapper, EndPointType.Maps)
+
+        public GoogleMapsManager(IStringLocalizer<GoogleApiModuleResource> localizer,
+            IServiceProvider serviceProvider, ICurrentUser currentUser, IObjectMapper objectMapper, GoogleApiModuleSettingsManager settingsManager)
+            : base(localizer, serviceProvider, currentUser, objectMapper, settingsManager, EndPointType.Maps)
         {
         }
 
@@ -52,7 +55,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _directionsApi = new DirectionsApi();
 
             var request = ObjectMapper.Map<GoogleMapsDirectionsInput, DirectionsRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _directionsApi.QueryAsync(request);
 
@@ -66,7 +69,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _distanceApi = new DistanceMatrixApi();
 
             var request = ObjectMapper.Map<GoogleMapsDistanceInput, DistanceMatrixRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _distanceApi.QueryAsync(request);
 
@@ -80,7 +83,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _elevationApi = new ElevationApi();
 
             var request = ObjectMapper.Map<GoogleMapsElevationInput, ElevationRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _elevationApi.QueryAsync(request);
 
@@ -94,7 +97,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _geocodeAddressApi = new Geocode.AddressGeocodeApi();
 
             var request = ObjectMapper.Map<GoogleMapsGeocodeAddressInput, AddressGeocodeRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _geocodeAddressApi.QueryAsync(request);
 
@@ -108,7 +111,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _geocodeLocationApi = new Geocode.LocationGeocodeApi();
 
             var request = ObjectMapper.Map<GoogleMapsGeocodeLocationInput, LocationGeocodeRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _geocodeLocationApi.QueryAsync(request);
 
@@ -122,7 +125,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _geocodePlaceApi = new Geocode.PlaceGeocodeApi();
 
             var request = ObjectMapper.Map<GoogleMapsGeocodePlaceInput, PlaceGeocodeRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _geocodePlaceApi.QueryAsync(request);
 
@@ -136,7 +139,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _geocodePlusCodeApi = new Geocode.PlusCodeGeocodeApi();
 
             var request = ObjectMapper.Map<GoogleMapsGeocodePlusCodeInput, PlusCodeGeocodeRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _geocodePlusCodeApi.QueryAsync(request);
 
@@ -150,7 +153,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _geolocationApi = new GeolocationApi();
 
             var request = ObjectMapper.Map<GoogleMapsGeolocationInput, GeolocationRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _geolocationApi.QueryAsync(request);
 
@@ -164,7 +167,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _nearestRoadsApi = new Roads.NearestRoadsApi();
 
             var request = ObjectMapper.Map<GoogleMapsNearestRoadsInput, NearestRoadsRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _nearestRoadsApi.QueryAsync(request);
 
@@ -178,7 +181,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _snapToRoadApi = new Roads.SnapToRoadApi();
 
             var request = ObjectMapper.Map<GoogleMapsSnapToRoadsInput, SnapToRoadsRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _snapToRoadApi.QueryAsync(request);
 
@@ -192,13 +195,13 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             //Speed limits is a premium endpoint, meaning it will throw HTTP 403 errors if you attempt to hit it with a trial key.
             //Instead of dealing with this in test, I am adding a flag to essentailly bypass the call if you disable premium endpoints
             //in the options.
-            if (Options.IncludePremiumEndpoints)
+            if (Settings.IncludePremiumEndpoints)
             {
 
                 var _speedLimitsApi = new Roads.SpeedLimitsApi();
 
                 var request = ObjectMapper.Map<GoogleMapsRoadsSpeedLimitInput, SpeedLimitsRequest>(input);
-                request.Key = Options.APIKey;
+                request.Key = Settings.ApiKey;
 
                 var response = await _speedLimitsApi.QueryAsync(request);
 
@@ -216,7 +219,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _staticMapsApi = new StaticMapsApi();
 
             var request = ObjectMapper.Map<GoogleMapsStaticMapsInput, StaticMapsRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _staticMapsApi.QueryAsync(request);
 
@@ -230,7 +233,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _streetViewApi = new StreetViewApi();
 
             var request = ObjectMapper.Map<GoogleMapsStreetViewInput, StreetViewRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _streetViewApi.QueryAsync(request);
 
@@ -244,7 +247,7 @@ namespace Byteology.GoogleApiModule.Apis.Maps
             var _timeZoneApi = new TimeZoneApi();
 
             var request = ObjectMapper.Map<GoogleMapsTimeZoneInput, TimeZoneRequest>(input);
-            request.Key = Options.APIKey;
+            request.Key = Settings.ApiKey;
 
             var response = await _timeZoneApi.QueryAsync(request);
 
