@@ -1,0 +1,32 @@
+﻿@using Byteology.GoogleApiModule.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<GoogleApiModuleResource> L
+@model Byteology.GoogleApiModule.Settings.GoogleApiModuleSettingsDto
+@{
+}
+
+<abp-script src="/Pages/Components/GoogleApiModuleSettingsGroup/Default.js"></abp-script>
+
+
+<form id="GoogleApiModuleSettingsForm" method="post">
+    <abp-row>
+        <abp-column size-md="_12">
+            <div>
+                <abp-input type="password" asp-for="ApiKey" label="@L["Settings:APIKey"].Value" info="@L["Settings:APIKey:Description"].Value" />
+                <abp-input type="password" asp-for="MapsApiKey" label="@L["Settings:MapsApiKey"].Value" info="@L["Settings:MapsApiKey:Description"].Value" />
+                <abp-input type="password" asp-for="PlacesApiKey" label="@L["Settings:PlacesApiKey"].Value" info="@L["Settings:PlacesApiKey:Description"].Value" />
+                <abp-input type="password" asp-for="SearchApiKey" label="@L["Settings:SearchApiKey"].Value" info="@L["Settings:SearchApiKey:Description"].Value" />
+                <abp-input type="password" asp-for="TranslateApiKey" label="@L["Settings:TranslateApiKey"].Value" info="@L["Settings:TranslateApiKey:Description"].Value" />
+                <abp-input asp-for="ClientId" label="@L["Settings:ClientId"].Value" info="@L["Settings:ClientId:Description"].Value" />
+                <abp-input asp-for="SearchEngineId" label="@L["Settings:SearchEngineId"].Value" info="@L["Settings:SearchEngineId:Description"].Value" />
+                <abp-input asp-for="RequireAuthentication" label="@L["Settings:RequireAuthentication"].Value" info="@L["Settings:RequireAuthentication:Description"].Value" />
+                <abp-input asp-for="RequireGranularPermissions" label="@L["Settings:RequireGranularPermissions"].Value" info="@L["Settings:RequireGranularPermissions:Description"].Value" />
+                <abp-input asp-for="IncludePremiumEndpoints" label="@L["Settings:IncludePremiumEndpoints"].Value" info="@L["Settings:IncludePremiumEndpoints:Description"].Value" />
+            </div>            
+            <hr class="my-4" />
+            <div>
+                <abp-button button-type="Primary" type="submit"><i class="fa fa-save"></i> @L["Save"]</abp-button>
+            </div>
+        </abp-column>
+    </abp-row>
+</form>

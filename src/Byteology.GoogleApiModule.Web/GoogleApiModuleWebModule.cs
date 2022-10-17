@@ -18,13 +18,17 @@ using Byteology.GoogleApiModule.Web.Pages.Bundles.Contributors;
 using System.Collections.Generic;
 using System;
 using Volo.Abp.Json.SystemTextJson;
+using Volo.Abp.SettingManagement.Web.Pages.SettingManagement;
+using Byteology.GoogleApiModule.Web.Settings;
+
 
 namespace Byteology.GoogleApiModule.Web;
 
 [DependsOn(
     typeof(GoogleApiModuleApplicationContractsModule),
     typeof(AbpAspNetCoreMvcUiThemeSharedModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpAutoMapperModule),
+    typeof(AbpAspNetCoreMvcUiBundlingModule)
     )]
 public class GoogleApiModuleWebModule : AbpModule
 {
@@ -67,6 +71,13 @@ public class GoogleApiModuleWebModule : AbpModule
                 options.UnsupportedTypes.AddIfNotContains(t);
             }
         });
+
+        Configure<SettingManagementPageOptions>(options =>
+        {
+            options.Contributors.Add(new GoogleApiModuleSettingPageContributor());
+        });
+
+        
 
 
         Configure<AbpNavigationOptions>(options =>

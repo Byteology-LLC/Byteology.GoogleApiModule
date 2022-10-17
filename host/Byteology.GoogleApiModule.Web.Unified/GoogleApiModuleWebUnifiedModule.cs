@@ -42,6 +42,8 @@ using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.Threading;
 using Volo.Abp.VirtualFileSystem;
 using Byteology.GoogleApiModule.Options;
+using Volo.Abp.SettingManagement.Web;
+using Volo.Abp.SettingManagement;
 
 namespace Byteology.GoogleApiModule;
 
@@ -75,7 +77,10 @@ namespace Byteology.GoogleApiModule;
     typeof(AbpTenantManagementEntityFrameworkCoreModule),
     typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAspNetCoreSerilogModule),
-    typeof(AbpSwashbuckleModule)
+    typeof(AbpSwashbuckleModule),
+    typeof(AbpSettingManagementWebModule),
+    typeof(AbpSettingManagementApplicationModule),
+    typeof(AbpSettingManagementHttpApiModule)
     )]
 public class GoogleApiModuleWebUnifiedModule : AbpModule
 {
@@ -109,37 +114,37 @@ public class GoogleApiModuleWebUnifiedModule : AbpModule
                 options.CustomSchemaIds(type => type.FullName);
             });
 
-        Configure<GoogleApiModuleOptions>(options =>
-        {
-            //Required for everything.
-            options.APIKey = configuration["GoogleApis:ApiKey"];
+        //Configure<GoogleApiModuleOptions>(options =>
+        //{
+        //    //Required for everything.
+        //    options.APIKey = configuration["GoogleApis:ApiKey"];
 
-            //Required if you are calling the search endpoint
-            //see https://programmablesearchengine.google.com/about/
-            options.SearchEngineId = configuration["GoogleApis:SearchEngineId"];
+        //    //Required if you are calling the search endpoint
+        //    //see https://programmablesearchengine.google.com/about/
+        //    options.SearchEngineId = configuration["GoogleApis:SearchEngineId"];
 
-            //Permissions System
-            //Enables permissions for each method. Overrides RequireAuthentication.
-            options.RequireGranularPermissions = false;
-            //Require authentication only. Useful to keep your API calls to authenticated users.
-            options.RequireAuthentication = true;
+        //    //Permissions System
+        //    //Enables permissions for each method. Overrides RequireAuthentication.
+        //    options.RequireGranularPermissions = false;
+        //    //Require authentication only. Useful to keep your API calls to authenticated users.
+        //    options.RequireAuthentication = true;
 
-            //Premium endpoints. Basically you need an asset tracking license to use the speedlimits endpoint
-            //in google maps, so this essentially bypasses the calls to that endpoint to avoid errors.
-            //see: https://mapsplatform.google.com/solutions/enable-asset-tracking/
-            options.IncludePremiumEndpoints = false;
+        //    //Premium endpoints. Basically you need an asset tracking license to use the speedlimits endpoint
+        //    //in google maps, so this essentially bypasses the calls to that endpoint to avoid errors.
+        //    //see: https://mapsplatform.google.com/solutions/enable-asset-tracking/
+        //    options.IncludePremiumEndpoints = false;
 
-            //APIKey Overrides (optional). For when you have specific API keys for the specific endpoints. If you
-            //have one of these set, it will override the value in ApiKey when the call is made.
-            options.MapsApiKey = configuration["GoogleApis:MapsApiKey"];
-            options.PlacesApiKey = configuration["GoogleApis:PlacesApiKey"];
-            options.TranslateApiKey = configuration["GoogleApis:TranslateApiKey"];
-            options.SearchApiKey = configuration["GoogleApis:SearchApiKey"];
+        //    //APIKey Overrides (optional). For when you have specific API keys for the specific endpoints. If you
+        //    //have one of these set, it will override the value in ApiKey when the call is made.
+        //    options.MapsApiKey = configuration["GoogleApis:MapsApiKey"];
+        //    options.PlacesApiKey = configuration["GoogleApis:PlacesApiKey"];
+        //    options.TranslateApiKey = configuration["GoogleApis:TranslateApiKey"];
+        //    options.SearchApiKey = configuration["GoogleApis:SearchApiKey"];
 
-            //Optional
-            options.ClientId = configuration["ClientId"];
+        //    //Optional
+        //    options.ClientId = configuration["ClientId"];
 
-        });
+        //});
 
         Configure<AbpLocalizationOptions>(options =>
         {

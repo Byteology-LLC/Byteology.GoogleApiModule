@@ -5,6 +5,7 @@ namespace Byteology.GoogleApiModule.Permissions;
 public class GoogleApiModulePermissions
 {
     public const string GroupName = "GoogleApiModule";
+    public const string Settings = GroupName + ".Settings";
 
     public class Maps
     {

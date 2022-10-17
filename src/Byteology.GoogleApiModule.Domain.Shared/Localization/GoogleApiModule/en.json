@@ -2,7 +2,9 @@
   "culture": "en",
   "texts": {
     "Error:MissingApiKey": "The API key is not configured. Please set the API key to continue.",
-    "Permission:GoogleApis": "Google APIs",
+    "Menu:GoogleApiModule": "Google API Module",
+    "Permission:GoogleApiModule": "Google APIs",
+    "Permission:Settings": "Manage Settings", 
     "Permission:Maps": "Maps",
     "Permission:Maps:Directions": "Directions",
     "Permission:Maps:DistanceMatrix": "Distance Matrix",
@@ -55,6 +57,26 @@
     "GoogleApi:Status:13": "Google API - Maximum dimensions exceeded.",
     "GooglePlacesAutoCompleteWidget": "Google Places AutoComplete Widget",
     "Error:MissingSearchEngineId": "A custom search engine id is required for the Google search API. See https://developers.google.com/custom-search/docs/tutorial/creatingcse for details.",
-    "Error:UnableToValidateAuthentication": "Unable to validate the authentication settings. Log out and then back in and try the request again."
+    "Error:UnableToValidateAuthentication": "Unable to validate the authentication settings. Log out and then back in and try the request again.",
+    "Settings:APIKey": "API Key",
+    "Settings:APIKey:Description": "Your application's API key (required). This assumes that the API has access to all necessary endpoints (maps, places, search, and translate)",
+    "Settings:MapsApiKey": "Maps API Key",
+    "Settings:MapsApiKey:Description": "Your application's API key for access Google Maps endpoints. If this is not set, the system fails over to using the general APIKey value.",
+    "Settings:PlacesApiKey": "Places API Key",
+    "Settings:PlacesApiKey:Description": "Your application's API key for access Google Places endpoints. If this is not set, the system fails over to using the general APIKey value.",
+    "Settings:SearchApiKey": "Search API Key",
+    "Settings:SearchApiKey:Description": "Your application's API key for access Google Search endpoints. If this is not set, the system fails over to using the general APIKey value.",
+    "Settings:TranslateApiKey": "Translate API Key",
+    "Settings:TranslateApiKey:Description": "Your application's API key for access Google Translate endpoints. If this is not set, the system fails over to using the general APIKey value.",
+    "Settings:ClientId": "Client Id",
+    "Settings:ClientId:Description": "The client ID provided to you by Google Enterprise Support, or null to disable URL signing. All client IDs begin with a \"gme-\" prefix.",
+    "Settings:RequireGranularPermissions": "Require Granular Permissions",
+    "Settings:RequireGranularPermissions:Description": "Require granular permissions to be granted in order to use the API, as opposed to only requiring authentication. Defaults to false.",
+    "Settings:RequireAuthentication": "Require Authentication",
+    "Settings:RequireAuthentication:Description": "Require calls to the API to come from authenticated users onle. Defaults to true.",
+    "Settings:SearchEngineId": "Custom Search Engine Id",
+    "Settings:SearchEngineId:Description": "Required for google search requests. Search engine created for a site with the Google Control Panel.",
+    "Settings:IncludePremiumEndpoints": "Include Premium Endpoints",
+    "Settings:IncludePremiumEndpoints:Description": "Google APIs have some premium endpoints (like the Speed Limits API) that are not available for trial use. Defaults to true."
   }
 }

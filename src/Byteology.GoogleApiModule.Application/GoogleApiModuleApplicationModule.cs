@@ -2,6 +2,8 @@
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
+using Byteology.GoogleApiModule.Settings;
+using Volo.Abp.SettingManagement;
 
 namespace Byteology.GoogleApiModule;
 
@@ -9,7 +11,8 @@ namespace Byteology.GoogleApiModule;
     typeof(GoogleApiModuleDomainModule),
     typeof(GoogleApiModuleApplicationContractsModule),
     typeof(AbpDddApplicationModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpAutoMapperModule),
+    typeof(AbpSettingManagementApplicationModule)
     )]
 public class GoogleApiModuleApplicationModule : AbpModule
 {
