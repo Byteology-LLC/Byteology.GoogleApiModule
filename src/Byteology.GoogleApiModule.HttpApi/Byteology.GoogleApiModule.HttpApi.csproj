@@ -5,9 +5,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Byteology.GoogleApiModule</RootNamespace>
-    <Version>1.0.10</Version>
-    <FileVersion>1.0.10</FileVersion>
-    <AssemblyVersion>1.0.10</AssemblyVersion>
+    <Version>1.1.0</Version>
+    <FileVersion>1.1.0</FileVersion>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageId>ByteologyLLC.GoogleApiModule.HttpApi</PackageId>
 	  <Authors>Don Boutwell</Authors>
