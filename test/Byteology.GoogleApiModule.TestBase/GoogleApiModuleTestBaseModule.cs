@@ -4,6 +4,7 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
+using Volo.Abp.Settings;
 using Volo.Abp.Threading;
 
 namespace Byteology.GoogleApiModule;
@@ -12,7 +13,8 @@ namespace Byteology.GoogleApiModule;
     typeof(AbpAutofacModule),
     typeof(AbpTestBaseModule),
     typeof(AbpAuthorizationModule),
-    typeof(GoogleApiModuleDomainModule)
+    typeof(GoogleApiModuleDomainModule),
+    typeof(AbpSettingsModule)
     )]
 public class GoogleApiModuleTestBaseModule : AbpModule
 {

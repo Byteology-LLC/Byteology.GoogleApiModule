@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\src\Byteology.GoogleApiModule.EntityFrameworkCore\Byteology.GoogleApiModule.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Byteology.GoogleApiModule.TestBase\Byteology.GoogleApiModule.TestBase.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="5.3.4" />
+	  <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="5.3.4" />
   </ItemGroup>
 
 </Project>

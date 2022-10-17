@@ -17,12 +17,12 @@ public class GoogleApiModuleApplicationTestModule : AbpModule
         //Replacing the IHttpContextAccessor service
         //context.Services.Replace(ServiceDescriptor.Transient<IHttpContextAccessor, IHttpContextAccessor>());
 
-        Configure<GoogleApiModuleOptions>(options =>
-        {
-            options.APIKey = configuration["GoogleApis:ApiKey"];
-            options.RequireAuthentication = false;
-            options.IncludePremiumEndpoints = false;
-            options.SearchEngineId = configuration["GoogleApis:SearchEngineId"];
-        });
+        //Configure<GoogleApiModuleOptions>(options =>
+        //{
+        //    options.APIKey = configuration["GoogleApis:ApiKey"];
+        //    options.RequireAuthentication = false;
+        //    options.IncludePremiumEndpoints = false;
+        //    options.SearchEngineId = configuration["GoogleApis:SearchEngineId"];
+        //});
     }
 }
