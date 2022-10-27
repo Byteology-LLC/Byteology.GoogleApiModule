@@ -17,7 +17,7 @@ jobs:
     - name: Jira TODO
       uses: atlassian/gajira-todo@master
       with:
-        project: GA
+        project: GAM
         issuetype: Task
         description: Created automatically via GitHub Actions
       env:
